@@ -23,6 +23,23 @@ def monitor_setting():
         monit = monitors._32BDL4550D_BAT_BEN
     if opt == '4':
         monit = monitors._xxBDL2105X
+        position = input('Select position:\n' +
+                         '1- A\n'+
+                         '2- B\n'+
+                         '3- C\n'+
+                         '4- D\n'+
+                         '5- R/L\n')
+        if position == '1':
+            conf_pos = monitors._Tiling['tiling_a']
+        if position == '2':
+            conf_pos = monitors._Tiling['tiling_b']
+        if position == '3':
+            conf_pos = monitors._Tiling['tiling_c']
+        if position == '4':
+            conf_pos = monitors._Tiling['tiling_d']
+        if position == '5':
+            conf_pos = monitors._Tiling['tiling_lr']
+
     if opt == 'q':
         exit()
 
@@ -35,7 +52,7 @@ def monitor_setting():
     try:
         for i in monit:
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-                s.settimeout(5)
+                s.settimeout(10)
                 try:
                     time.sleep(0.2)
                     s.connect((HOST, PORT))
@@ -55,6 +72,30 @@ def monitor_setting():
                 except TimeoutError:
                     print(f'{Fore.RED}{i} -> Connection timeout')
         print('\n')
+
+        if opt == '4':
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                    s.settimeout(10)
+                    try:
+                        time.sleep(0.2)
+                        s.connect((HOST, PORT))
+                        s.sendall(bytes.fromhex(conf_pos))
+                        data = s.recv(1024)
+                        lon = len(data) - 1
+                        d = data[4:lon]
+                        if d == b'\x18':
+                            print(f'{Fore.RED}{i} -> Command not available, not relevant or cannot execute')
+                        elif d == b'\x15':
+                            print(f'{Fore.RED}{i} -> Not Acknowledge command')
+                        elif d == b'\x06':
+                            print(f'{Fore.GREEN}{i} - > Command applied succesfully')              
+                        else:
+                            print(data[4:lon])
+
+                    except TimeoutError:
+                        print(f'{Fore.RED}{i} -> Connection timeout')
+                        
         monitor_setting()
         
     except Exception as e:

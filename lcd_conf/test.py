@@ -80,7 +80,11 @@ def commands():
     # monitor_setting()
     pass
     
-commands()
+def prueba():
+    print (monitors._Tiling['tiling_a'])
+
+# commands()
 # nmapper()
 # nmapper_2()
 # test_1()
+prueba()
