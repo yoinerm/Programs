@@ -71,7 +71,7 @@ _xxBDL2105X = {
     # Switch On State = Force on, Panel saving, Smart power control = Off, Pixel shift = off
     # Boot on source = Display Port, Auto signal detection = Fail over, Fail over = HDMI1 (all), Power save mode = Mode 4
 
-    'input_source':'090100AC0A090100A6',
+    'input_source':'090100AC0D090100A1',
     'video_params':'0C0100325A32553232000200',
     'color_temperature':'060100340033',
     'audio_limits':'080100B8000000B1',
@@ -81,17 +81,17 @@ _xxBDL2105X = {
     'cooling_fan':'060100610167',
     'RS232':'0601009B019D',
     'pixel_shift':'060100B200B5',
-    # 'boot_source':'070100BB0A00B7',
+    # 'boot_source':'070100BB0A00B7', Cambiado de DPI a HDMI
     'boot_source':'070100BB0D00B0',
     'auto_signal':'060100AE05AC',
-    'fail_over':'130100A50300000000000000000000000000B4',
+    'fail_over':'130100A50000000000000000000000000000B7',
     'OSD_rotation':'0C010017000101010000001B',
     'power_mode':'060100D207D2'
 }
 
 
 _Tiling = {
-    'tiling_a':'09010022010001173D',
+    'tiling_a':'09010022010001113B',
     'tiling_b':'09010022010002173E',
     'tiling_c':'09010022010003173F',
     'tiling_d':'090100220100041738'
