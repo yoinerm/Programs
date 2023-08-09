@@ -23,6 +23,7 @@ def monitor_setting():
         monit = monitors._32BDL4550D_BAT_BEN
     if opt == '4':
         monit = monitors._xxBDL2105X
+        monit['conf_pos'] = monitors._Tiling['tiling_a']
     #     position = input('Select position:\n' +
     #                      '1- A\n'+
     #                      '2- B\n'+
@@ -37,7 +38,7 @@ def monitor_setting():
     #         monit['conf_pos'] = monitors._Tiling['tiling_c']
     #     if position == '4':
     #         monit['conf_pos'] = monitors._Tiling['tiling_d']
-    # print(monit)
+    print(monit)
     if opt == 'q':
         exit()
 
